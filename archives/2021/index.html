@@ -215,7 +215,7 @@ Quick
         <a href="/2021/01/18/hee/" class="thumbnail">
     
     
-        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shpL7Q.jpg)" alt="关于账号加密" class="thumbnail-image"></span>
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shpL7Q.jpg)" alt="盐" class="thumbnail-image"></span>
     
     
         
@@ -240,14 +240,14 @@ Quick
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2021/01/18/hee/">关于账号加密</a>
+        <a href="/2021/01/18/hee/">盐</a>
         </h1>
     
 
         <p class="article-excerpt">
             
-由于改动数据库密码导致无法登录学习到密码的加密
-12345678910import hashlibuserID &#x3D; &#39;788802624700001609839882&#39;passWord &#x3D; &#39;f379eaf3c831b04de153469d1bec345e&#39;sha &#x3D; hashlib.sha256()sha.update(userID
+遇上了一个账号需要改动密码，直接在数据库中改动了，发现无法登录，询问后端才知道，密码并不是简单的，直接sha256哈希userid出来的，经过了三重updata的拼接。python复现↓
+12345678910import hashlibuserID &#x3D; &#39;788802624700001609839882&#39;passWord &#x3D; &#39;f379eaf3c83
         </p>
     </div>
 </article>
@@ -325,7 +325,7 @@ Quick
                             <a href="/2021/01/18/hee/" class="thumbnail">
     
     
-        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shpL7Q.jpg)" alt="关于账号加密" class="thumbnail-image"></span>
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shpL7Q.jpg)" alt="盐" class="thumbnail-image"></span>
     
     
 </a>
@@ -334,7 +334,7 @@ Quick
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
-                            <p class="item-title"><a href="/2021/01/18/hee/" class="title">关于账号加密</a></p>
+                            <p class="item-title"><a href="/2021/01/18/hee/" class="title">盐</a></p>
                             <p class="item-date"><time datetime="2021-01-18T11:11:30.000Z" itemprop="datePublished">2021-01-18</time></p>
                         </div>
                     </li>
