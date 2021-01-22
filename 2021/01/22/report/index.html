@@ -6,26 +6,26 @@
     
 
     
-    <title>弱网测试 | H·stone</title>
+    <title>allure测试报告在项目中的使用实践 | H·stone</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="弱网测试" />
+    <meta name="keywords" content="allure" />
     
-    <meta name="description" content="ios弱网配置操作步骤：  进入开发者选项 选择NETWORK LINK CONDITIONER 将ENABLE打开 选择对应的网络环境，100%Loss、3G、Very Bad Network、WiFi等 自定义网络环境：Add a profile 备注：bandwidth是带宽，以k&#x2F;s为单位；packet loss是丢包率，按百分比计算；delay延时，单位是毫秒，1000毫秒等于1秒。下面">
+    <meta name="description" content="allure测试报告在自动化项目中的使用Allure Framework是一种灵活的轻量级多语言测试报告工具，美观且功能丰富 使用allure报告的前置条件  下载安装jdk，并配置好环境变量 下载allure安装包解压到文件夹（任意即可），并配置环境变量 pip install allure-pytest  使用：  运行项目时执行，指定生成的allure文件存放的文件夹  123456789i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="弱网测试">
-<meta property="og:url" content="http://example.com/2019/04/16/weaknet/index.html">
+<meta property="og:title" content="allure测试报告在项目中的使用实践">
+<meta property="og:url" content="http://example.com/2021/01/22/report/index.html">
 <meta property="og:site_name" content="H·stone">
-<meta property="og:description" content="ios弱网配置操作步骤：  进入开发者选项 选择NETWORK LINK CONDITIONER 将ENABLE打开 选择对应的网络环境，100%Loss、3G、Very Bad Network、WiFi等 自定义网络环境：Add a profile 备注：bandwidth是带宽，以k&#x2F;s为单位；packet loss是丢包率，按百分比计算；delay延时，单位是毫秒，1000毫秒等于1秒。下面">
+<meta property="og:description" content="allure测试报告在自动化项目中的使用Allure Framework是一种灵活的轻量级多语言测试报告工具，美观且功能丰富 使用allure报告的前置条件  下载安装jdk，并配置好环境变量 下载allure安装包解压到文件夹（任意即可），并配置环境变量 pip install allure-pytest  使用：  运行项目时执行，指定生成的allure文件存放的文件夹  123456789i">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/21/shFix1.jpg">
-<meta property="article:published_time" content="2019-04-16T10:11:56.000Z">
-<meta property="article:modified_time" content="2021-01-21T05:51:00.695Z">
+<meta property="og:image" content="https://s3.ax1x.com/2021/01/22/sI2ZC9.png">
+<meta property="article:published_time" content="2021-01-22T10:11:56.000Z">
+<meta property="article:modified_time" content="2021-01-22T08:31:36.728Z">
 <meta property="article:author" content="H·stone">
-<meta property="article:tag" content="弱网测试">
+<meta property="article:tag" content="allure">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/21/shFix1.jpg">
+<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/22/sI2ZC9.png">
     
 
     
@@ -155,14 +155,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-weaknet" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-report" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        弱网测试
+        allure测试报告在项目中的使用实践
         </h1>
     
 
@@ -173,16 +173,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2019/04/16/weaknet/" class="article-date">
-       <time datetime="2019-04-16T10:11:56.000Z" itemprop="datePublished">2019-04-16</time>
+    <a href="/2021/01/22/report/" class="article-date">
+       <time datetime="2021-01-22T10:11:56.000Z" itemprop="datePublished">2021-01-22</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2019/04/16/weaknet/" class="article-date">
-     <time datetime="2021-01-21T05:51:00.695Z" itemprop="dateModified">2021-01-21</time>
+  <a href="/2021/01/22/report/" class="article-date">
+     <time datetime="2021-01-22T08:31:36.728Z" itemprop="dateModified">2021-01-22</time>
   </a>
 </div>
 
@@ -192,7 +192,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/%E5%BC%B1%E7%BD%91%E6%B5%8B%E8%AF%95/" rel="tag">弱网测试</a>
+        <a class="tag-link-link" href="/tags/allure/" rel="tag">allure</a>
     </div>
 
                 
@@ -209,18 +209,22 @@
 
             
 
-            <h3 id="ios弱网配置"><a href="#ios弱网配置" class="headerlink" title="ios弱网配置"></a>ios弱网配置</h3><p>操作步骤：</p>
-<ul>
-<li>进入开发者选项</li>
-<li>选择NETWORK LINK CONDITIONER</li>
-<li>将ENABLE打开</li>
-<li>选择对应的网络环境，100%Loss、3G、Very Bad Network、WiFi等</li>
-<li>自定义网络环境：Add a profile</li>
-<li>备注：bandwidth是带宽，以k/s为单位；packet loss是丢包率，按百分比计算；delay延时，单位是毫秒，1000毫秒等于1秒。<br>下面是我配的几个参考网络环境。</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/shFQxI"><img src="https://s3.ax1x.com/2021/01/21/shFQxI.png" alt="shFQxI.png"></a><br><a target="_blank" rel="noopener" href="https://imgchr.com/i/shFOWd"><img src="https://s3.ax1x.com/2021/01/21/shFOWd.png" alt="shFOWd.png"></a><br><a target="_blank" rel="noopener" href="https://imgchr.com/i/shFLJH"><img src="https://s3.ax1x.com/2021/01/21/shFLJH.png" alt="shFLJH.png"></a></p>
-<p>有的可以采用无线热点进行限速</p>
-<h3 id="charles如何设置弱网"><a href="#charles如何设置弱网" class="headerlink" title="charles如何设置弱网"></a>charles如何设置弱网</h3><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/shFqFe"><img src="https://s3.ax1x.com/2021/01/21/shFqFe.png" alt="shFqFe.png"></a><br><a target="_blank" rel="noopener" href="https://imgchr.com/i/shFHoD"><img src="https://s3.ax1x.com/2021/01/21/shFHoD.png" alt="shFHoD.png"></a></p>
+            <h4 id="allure测试报告在自动化项目中的使用"><a href="#allure测试报告在自动化项目中的使用" class="headerlink" title="allure测试报告在自动化项目中的使用"></a>allure测试报告在自动化项目中的使用</h4><p>Allure Framework是一种灵活的轻量级多语言测试报告工具，美观且功能丰富</p>
+<p>使用allure报告的前置条件</p>
+<ol>
+<li>下载安装jdk，并配置好环境变量</li>
+<li>下载allure安装包解压到文件夹（任意即可），并配置环境变量</li>
+<li>pip install allure-pytest</li>
+</ol>
+<p>使用：</p>
+<ol>
+<li>运行项目时执行，指定生成的allure文件存放的文件夹</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    1.清理配置信息</span><br><span class="line">    1.获取token，存储到cookie.json中供全局使用</span><br><span class="line">    </span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    clear()</span><br><span class="line">    handel_token()</span><br><span class="line">    pytest.main([&#39;-s&#39;, &#39;-q&#39;, &#39;--alluredir&#x3D;allure_results&#39;]) </span><br></pre></td></tr></table></figure>
+<p>allure_results文件夹中生成了一堆json，txt等格式的莫名文件<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/sI6tg0"><img src="https://s3.ax1x.com/2021/01/22/sI6tg0.png" alt="sI6tg0.png"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allure serve allure_results执行后会调起浏览器展示测试报告</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(venv) C:\Users\Administrator\Desktop\autotestAPI&gt;allure serve allure_results</span><br><span class="line">Generating report to temp directory...</span><br><span class="line">Report successfully generated to C:\Users\ADMINI~1\AppData\Local\Temp\2357441130466454662\allure-report</span><br><span class="line">Starting web server...</span><br><span class="line">2021-01-22 15:42:06.658:INFO::main: Logging initialized @2962ms to org.eclipse.jetty.util.log.StdErrLog</span><br><span class="line">Server started at &lt;http:&#x2F;&#x2F;192.168.0.101:5948&#x2F;&gt;. Press &lt;Ctrl+C&gt; to exit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/sIcC2q"><img src="https://s3.ax1x.com/2021/01/22/sIcC2q.png" alt="sIcC2q.png"></a></p>
 
         </div>
         <footer class="article-footer">
@@ -228,7 +232,7 @@
 
 
 
-    <a data-url="http://example.com/2019/04/16/weaknet/" data-id="ckk8138tz0006b8jk8ypsgpp2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://example.com/2021/01/22/report/" data-id="ckk8138tt0002b8jk9uh7dtz6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -298,23 +302,27 @@
             "@type": "Person",
             "name": "H·stone"
         },
-        "headline": "弱网测试",
-        "image": "http://example.comhttps://s3.ax1x.com/2021/01/21/shFix1.jpg",
-        "keywords": "弱网测试",
+        "headline": "allure测试报告在项目中的使用实践",
+        "image": "http://example.comhttps://s3.ax1x.com/2021/01/22/sI2ZC9.png",
+        "keywords": "allure",
         "genre": "工作",
-        "datePublished": "2019-04-16",
-        "dateCreated": "2019-04-16",
-        "dateModified": "2021-01-21",
-        "url": "http://example.com/2019/04/16/weaknet/",
-        "description": "ios弱网配置操作步骤：
+        "datePublished": "2021-01-22",
+        "dateCreated": "2021-01-22",
+        "dateModified": "2021-01-22",
+        "url": "http://example.com/2021/01/22/report/",
+        "description": "allure测试报告在自动化项目中的使用Allure Framework是一种灵活的轻量级多语言测试报告工具，美观且功能丰富
+使用allure报告的前置条件
 
-进入开发者选项
-选择NETWORK LINK CONDITIONER
-将ENABLE打开
-选择对应的网络环境，100%Loss、3G、Very Bad Network、WiFi等
-自定义网络环境：Add a profile
-备注：bandwidth是带宽，以k/s为单位；packet loss是丢包率，按百分比计算；delay延时，单位是毫秒，1000毫秒等于1秒。下面",
-        "wordCount": 31
+下载安装jdk，并配置好环境变量
+下载allure安装包解压到文件夹（任意即可），并配置环境变量
+pip install allure-pytest
+
+使用：
+
+运行项目时执行，指定生成的allure文件存放的文件夹
+
+123456789i",
+        "wordCount": 126
     }
 </script>
 
@@ -363,16 +371,12 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/01/18/hee/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            盐
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
+        <a href="/2021/01/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Hello World</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -567,7 +571,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://example.com/2019/04/16/weaknet/';
+    var disqus_url = 'http://example.com/2021/01/22/report/';
     
     (function() {
     var dsq = document.createElement('script');
