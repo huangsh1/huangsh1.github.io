@@ -6,21 +6,27 @@
     
 
     
-    <title>H·stone</title>
+    <title>selenium中曾经遇上问题的地方 | H·stone</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="H·stone">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="keywords" content="selenium,ui自动化" />
+    
+    <meta name="description" content="关于元素互相遮挡元素块互有遮挡 会造成 click（）某个元素的时候，点击不到想要的元素  点击到别的地方去。 123sub_loc &#x3D; &#39;&#x2F;html&#x2F;body&#x2F;div[2]&#39;    sub &#x3D; bp.By_xpath(sub_loc)    driver.execute_script(&#39;$(arguments[0]).fa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selenium中曾经遇上问题的地方">
+<meta property="og:url" content="http://example.com/2021/01/22/selenium/index.html">
 <meta property="og:site_name" content="H·stone">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="关于元素互相遮挡元素块互有遮挡 会造成 click（）某个元素的时候，点击不到想要的元素  点击到别的地方去。 123sub_loc &#x3D; &#39;&#x2F;html&#x2F;body&#x2F;div[2]&#39;    sub &#x3D; bp.By_xpath(sub_loc)    driver.execute_script(&#39;$(arguments[0]).fa">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-21T01:29:33.966Z">
-<meta property="article:modified_time" content="2021-01-21T01:29:25.241Z">
+<meta property="og:image" content="https://s3.ax1x.com/2021/01/25/sLNUBD.png">
+<meta property="article:published_time" content="2021-01-22T10:11:56.000Z">
+<meta property="article:modified_time" content="2021-01-25T07:39:20.577Z">
 <meta property="article:author" content="H·stone">
+<meta property="article:tag" content="selenium">
+<meta property="article:tag" content="ui自动化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/25/sLNUBD.png">
     
 
     
@@ -145,14 +151,56 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    H·stone
+    <a class="page-title-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="page-" class="article article-single article-type-page" itemscope itemprop="blogPost">
+                            <article id="post-selenium" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        selenium中曾经遇上问题的地方
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/01/22/selenium/" class="article-date">
+       <time datetime="2021-01-22T10:11:56.000Z" itemprop="datePublished">2021-01-22</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/01/22/selenium/" class="article-date">
+     <time datetime="2021-01-25T07:39:20.577Z" itemprop="dateModified">2021-01-25</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/selenium/" rel="tag">selenium</a>, <a class="tag-link-link" href="/tags/ui%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">ui自动化</a>
+    </div>
+
+                
+
+                
+
+            </div>
         
         
         <div class="article-entry" itemprop="articleBody">
@@ -162,14 +210,26 @@
 
             
 
-            
+            <h5 id="关于元素互相遮挡"><a href="#关于元素互相遮挡" class="headerlink" title="关于元素互相遮挡"></a>关于元素互相遮挡</h5><p>元素块互有遮挡 会造成 click（）某个元素的时候，点击不到想要的元素  点击到别的地方去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sub_loc &#x3D; &#39;&#x2F;html&#x2F;body&#x2F;div[2]&#39;</span><br><span class="line">    sub &#x3D; bp.By_xpath(sub_loc)</span><br><span class="line">    driver.execute_script(&#39;$(arguments[0]).fadeOut()&#39;, sub)</span><br></pre></td></tr></table></figure>
+<p>直接找到遮盖了目标元素的元素块，直接隐藏。</p>
+<h5 id="显示-隐式等待"><a href="#显示-隐式等待" class="headerlink" title="显示/隐式等待"></a>显示/隐式等待</h5><h6 id="隐式等待"><a href="#隐式等待" class="headerlink" title="隐式等待"></a>隐式等待</h6><p>当查找元素没有立即出现的时候，隐式等待等待一段时间后再查找DOM，默认时间是0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">browser &#x3D; webdriver.Chrome()</span><br><span class="line">browser.implicitly_wait(10)</span><br><span class="line">browser.get(&quot;http:&#x2F;&#x2F;www.zhihu.com&#x2F;explore&quot;)</span><br><span class="line">input &#x3D; browser.find_element_by_class_name(&#39;zu-top-add-question&#39;)</span><br><span class="line">print(input)</span><br></pre></td></tr></table></figure>
+<h6 id="显式等待"><a href="#显式等待" class="headerlink" title="显式等待"></a>显式等待</h6><p>指定一个等待条件，设置一个最长等待时间<br>等带时间内满足了条件就正常返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">from selenium.webdriver.support.ui import WebDriverWait</span><br><span class="line">from selenium.webdriver.support import expected_conditions as EC</span><br><span class="line">browser &#x3D; webdriver.Chrome()</span><br><span class="line">browser.get(&quot;http:&#x2F;&#x2F;www.taobao.com&#x2F;&quot;)</span><br><span class="line">wait &#x3D; WebDriverWait(browser,10)</span><br><span class="line">input &#x3D; wait.until(EC.presence_of _element_located((By.ID,&#39;q&#39;)))</span><br><span class="line">button &#x3D; wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,&#39;.btn-search&#39;)))</span><br><span class="line">print(input,button)</span><br><span class="line">​</span><br><span class="line">    def ByXpath_wait_time(self, loc_arg):</span><br><span class="line">        &quot;&quot;&quot;元素获取方式之xpath-显示等待&quot;&quot;&quot;</span><br><span class="line">        return WebDriverWait(self.driver, 15, 3).until(EC.presence_of_element_located((By.XPATH, loc_arg)))</span><br></pre></td></tr></table></figure>
+<h5 id="执行javascript"><a href="#执行javascript" class="headerlink" title="执行javascript"></a>执行javascript</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">​</span><br><span class="line">browser &#x3D; webdriver.Chrome()</span><br><span class="line">browser.get(&quot;http:&#x2F;&#x2F;www.taobao.com&#x2F;&quot;)</span><br><span class="line">browser.execute_script(&#39;window.scrollTo(0,document.body.scrollHeight)&#39;)</span><br><span class="line">browser.execute_script(&#39;alert(&quot;To Bottom&quot;)&#39;)</span><br></pre></td></tr></table></figure>
+<p>#实现了页面从上到下拉<br>​</p>
+<h5 id="chrome无头模式"><a href="#chrome无头模式" class="headerlink" title="chrome无头模式"></a>chrome无头模式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrome_options &#x3D; Options()</span><br><span class="line">    chrome_options.add_argument(&#39;--headless&#39;)</span><br><span class="line">    driver &#x3D; webdriver.Chrome(chrome_options&#x3D;chrome_options)</span><br></pre></td></tr></table></figure>
+<h5 id="selenium对于alert的处理（坑）"><a href="#selenium对于alert的处理（坑）" class="headerlink" title="selenium对于alert的处理（坑）"></a>selenium对于alert的处理（坑）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">        WebDriverWait(driver, 5).until(EC.alert_is_present(), &#39;Timed out waiting for alerts to appear&#39;)</span><br><span class="line">        alert &#x3D; driver.switch_to.alert</span><br><span class="line">        alert.accept()</span><br><span class="line">        print(&quot;alert accepted&quot;)</span><br><span class="line">    except TimeoutException:</span><br><span class="line">        print(&quot;no alert&quot;)</span><br></pre></td></tr></table></figure>
+<p>==不是所有alert警告都是弹窗后瞬间警告，需要加上等待==</p>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://example.com/about/index.html" data-id="ckkc9gpey0000b0jke0jlenk1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://example.com/2021/01/22/selenium/" data-id="ckkc9gpfl0006b0jk7181618g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -239,16 +299,17 @@
             "@type": "Person",
             "name": "H·stone"
         },
-        
-        "image": "http://example.com",
-        
-        
-        "datePublished": "2021-01-21",
-        "dateCreated": "2021-01-21",
-        "dateModified": "2021-01-21",
-        "url": "http://example.com/about/index.html",
-        "description": "",
-        "wordCount": 1
+        "headline": "selenium中曾经遇上问题的地方",
+        "image": "http://example.comhttps://s3.ax1x.com/2021/01/25/sLNUBD.png",
+        "keywords": "selenium ui自动化",
+        "genre": "工作",
+        "datePublished": "2021-01-22",
+        "dateCreated": "2021-01-22",
+        "dateModified": "2021-01-25",
+        "url": "http://example.com/2021/01/22/selenium/",
+        "description": "关于元素互相遮挡元素块互有遮挡 会造成 click（）某个元素的时候，点击不到想要的元素  点击到别的地方去。
+123sub_loc &#x3D; &#39;&#x2F;html&#x2F;body&#x2F;div[2]&#39;    sub &#x3D; bp.By_xpath(sub_loc)    driver.execute_script(&#39;$(arguments[0]).fa",
+        "wordCount": 279
     }
 </script>
 
@@ -293,6 +354,29 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2021/01/22/report/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            allure测试报告在项目中的使用实践
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2021/01/18/hee/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">盐</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -484,7 +568,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://example.com/about/index.html';
+    var disqus_url = 'http://example.com/2021/01/22/selenium/';
     
     (function() {
     var dsq = document.createElement('script');
