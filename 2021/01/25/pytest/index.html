@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>python+pytest 构建接口自动化项目 | H·stone</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="自动化测试,pytest" />
+    
+    <meta name="description" content="python+pytest 构建接口自动化项目技术要求：python基础 存在的不足 获取函数名方法不好 token鉴权是否是这种方式？ 未完成一个好用的接口关联机制 无法测试rpc接口  项目构成：autoAPItest  allure_results ：测试结果文件夹，通过allure生成，由大量json，txt格式文件组成 commom ：公共方法文件，内部包含，对json的处理，对toke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python+pytest 构建接口自动化项目">
+<meta property="og:url" content="http://example.com/2021/01/25/pytest/index.html">
+<meta property="og:site_name" content="H·stone">
+<meta property="og:description" content="python+pytest 构建接口自动化项目技术要求：python基础 存在的不足 获取函数名方法不好 token鉴权是否是这种方式？ 未完成一个好用的接口关联机制 无法测试rpc接口  项目构成：autoAPItest  allure_results ：测试结果文件夹，通过allure生成，由大量json，txt格式文件组成 commom ：公共方法文件，内部包含，对json的处理，对toke">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.ax1x.com/2021/01/25/sO3Lw9.jpg">
+<meta property="article:published_time" content="2021-01-25T13:03:55.000Z">
+<meta property="article:modified_time" content="2021-01-25T13:30:04.845Z">
+<meta property="article:author" content="H·stone">
+<meta property="article:tag" content="自动化测试">
+<meta property="article:tag" content="pytest">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/25/sO3Lw9.jpg">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></li></ul>
+                                
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于我</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-pytest" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        python+pytest 构建接口自动化项目
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2021/01/25/pytest/" class="article-date">
+       <time datetime="2021-01-25T13:03:55.000Z" itemprop="datePublished">2021-01-25</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2021/01/25/pytest/" class="article-date">
+     <time datetime="2021-01-25T13:30:04.845Z" itemprop="dateModified">2021-01-25</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/pytest/" rel="tag">pytest</a>, <a class="tag-link-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h3 id="python-pytest-构建接口自动化项目"><a href="#python-pytest-构建接口自动化项目" class="headerlink" title="python+pytest 构建接口自动化项目"></a>python+pytest 构建接口自动化项目</h3><p>技术要求：<br>python基础</p>
+<h5 id="存在的不足"><a href="#存在的不足" class="headerlink" title="存在的不足"></a>存在的不足</h5><ol>
+<li>获取函数名方法不好</li>
+<li>token鉴权是否是这种方式？</li>
+<li>未完成一个好用的接口关联机制</li>
+<li>无法测试rpc接口</li>
+</ol>
+<h5 id="项目构成："><a href="#项目构成：" class="headerlink" title="项目构成："></a>项目构成：</h5><p><strong>autoAPItest</strong></p>
+<ul>
+<li>allure_results ：测试结果文件夹，通过allure生成，由大量json，txt格式文件组成</li>
+<li>commom ：公共方法文件，内部包含，对json的处理，对token的处理，和一些工具类型方法</li>
+<li>config：配置文件夹，内部放置了初始的配置和json相关配置的方法</li>
+<li>log：存放log日志文件</li>
+<li>data：测试用例文件夹（命名已被设定好具体规则）</li>
+<li>tests：测试断言文件夹|（py文件命名，函数命名已设定）</li>
+<li>conftest.py：文件存放了fixture，完成对测试用例 的前置后置操作</li>
+<li>pytest.ini：pytest的配置文件</li>
+<li>run.py: 程序执行函数入口（可以添加用例完成前后的一些操作）<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/sOQdI0"><img src="https://s3.ax1x.com/2021/01/25/sOQdI0.png" alt="sOQdI0.png"></a></li>
+</ul>
+<h6 id="本项目如何完成对接口的自动化测试？"><a href="#本项目如何完成对接口的自动化测试？" class="headerlink" title="本项目如何完成对接口的自动化测试？"></a>本项目如何完成对接口的自动化测试？</h6><p>以下是闭门造车的个人观点(╥╯^╰╥)，接口测试实质上就是访问接口，获取接口的返回值，并获取预先确认的数据，进行对比。判断返回值是否正确。</p>
+<p>这个项目我的想法就是，</p>
+<ol>
+<li>首先我设置了一个存放token的配置文件cookie.json（被测试项目是通过token鉴权），每次项目执行前先完成对cookie.json的清理，然后通过登录被测系统拿到token，写入cookie.json文件</li>
+<li>接口文件写成 test-项目-端-接口名.json格式</li>
+<li>测试函数通过一样的文件名去读取对应的数据，通过工具文件中的公共方法读取接口文件后返回成请求数据，随后断言结果是否正确。</li>
+</ol>
+<h6 id="上代码："><a href="#上代码：" class="headerlink" title="上代码："></a>上代码：</h6><p>commom</p>
+<ul>
+<li>handel_cookie.py</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">获取cookie</span><br><span class="line">写入cookie</span><br><span class="line">提供调用</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">import requests</span><br><span class="line">from commom.handel_json import get_jsondata</span><br><span class="line">from commom.unit import get_init_data</span><br><span class="line">from commom.log import MyLog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">base_path &#x3D; os.path.dirname(os.path.dirname(__file__))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_token_init():</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    【登录账号获取token】</span><br><span class="line">    账号密码登录获取cookie</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    unit_data &#x3D; get_jsondata(&#39;config.json&#39;)</span><br><span class="line">    headers &#x3D; get_jsondata(&quot;headers.json&quot;)[&#39;header&#39;]</span><br><span class="line">    token_dict &#x3D; &#123;&#125;</span><br><span class="line">    for (key, value) in unit_data[&#39;test&#39;].items():</span><br><span class="line">        data &#x3D; get_init_data(key)</span><br><span class="line">        if data is not None:</span><br><span class="line">            r &#x3D; requests.post(value + unit_data[&quot;login_path&quot;][&quot;path&quot;], headers&#x3D;headers, data&#x3D;json.dumps(data))</span><br><span class="line">            res &#x3D; json.loads(r.text)</span><br><span class="line">            if res[&#39;errorMsg&#39;] &#x3D;&#x3D; &#39;手机号或邮箱未注册&#39;:</span><br><span class="line">                MyLog.error(&quot;手机号或邮箱未注册,无法登录&quot;)</span><br><span class="line">                return None</span><br><span class="line">            else:</span><br><span class="line">                token &#x3D; res[&#39;data&#39;][&#39;token&#39;]</span><br><span class="line">                token_dict[key] &#x3D; token</span><br><span class="line">                MyLog.info(&quot;成功获取token&quot;)</span><br><span class="line">    return token_dict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def handel_token():</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    1.获取token</span><br><span class="line">    2.读取json</span><br><span class="line">    3.修改json</span><br><span class="line">    4.回写json</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    token_dict &#x3D; get_token_init()</span><br><span class="line">    for (key, value) in token_dict.items():</span><br><span class="line">        key &#x3D; key[0:6]</span><br><span class="line">        headers &#x3D; &#123;</span><br><span class="line">            &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">            &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">            &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">            &quot;token&quot;: f&quot;&#123;value&#125;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        old_headers &#x3D; get_jsondata(&#39;headers.json&#39;)</span><br><span class="line">        old_headers[key][&#39;headers&#39;] &#x3D; headers</span><br><span class="line">        with open(base_path + r&quot;\config\headers.json&quot;, &quot;w&quot;) as f:</span><br><span class="line">            f.write(json.dumps(old_headers))</span><br><span class="line">    MyLog.info(&quot;成功写入headers内容进入headers文件&quot;)</span><br><span class="line"></span><br><span class="line">def clear():</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    清理cookie</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    token_dict &#x3D; get_token_init()</span><br><span class="line">    for (key, value) in token_dict.items():</span><br><span class="line">        key &#x3D; key[0:6]</span><br><span class="line">        headers &#x3D; &#123;&#125;</span><br><span class="line">        old_headers &#x3D; get_jsondata(&#39;headers.json&#39;)</span><br><span class="line">        old_headers[key][&#39;headers&#39;] &#x3D; headers</span><br><span class="line">        with open(base_path + r&quot;\config\headers.json&quot;, &quot;w&quot;) as f:</span><br><span class="line">            f.write(json.dumps(old_headers))</span><br><span class="line">    MyLog.info(&quot;完成对json配置文件的清理&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    handel_token()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>handel_json.py</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_jsondata(file_name):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    【获取json数据，判断是什么类型的json文件,并且返回获取的数据】</span><br><span class="line">    :param file_name: 文件名</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if file_name.find(&quot;_&quot;) &gt;&#x3D; 0:</span><br><span class="line">        file_name &#x3D; os.path.dirname(os.path.dirname(__file__)) + r&quot;\data\\&quot; + file_name</span><br><span class="line">    else:</span><br><span class="line">        file_name &#x3D; os.path.dirname(os.path.dirname(__file__)) + r&quot;\config\\&quot; + file_name</span><br><span class="line">    with open(file_name, encoding&#x3D;&#39;UTF-8&#39;) as f:</span><br><span class="line">        data &#x3D; json.load(f)</span><br><span class="line">    return data</span><br></pre></td></tr></table></figure>
+<ul>
+<li>log.py</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">实现log日志的公共方法</span><br><span class="line">调用规则 例：</span><br><span class="line">from commom.Log import *</span><br><span class="line">self.logger.warning(f&quot;当前json文件路径获取出错：&#123;file_path&#125;&quot;)</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import time</span><br><span class="line">import logging.handlers</span><br><span class="line"></span><br><span class="line"># 日志打印等级</span><br><span class="line">LEVELS &#x3D; &#123;</span><br><span class="line">    &#39;debug&#39;: logging.DEBUG,</span><br><span class="line">    &#39;info&#39;: logging.INFO,</span><br><span class="line">    &#39;warning&#39;: logging.WARNING,</span><br><span class="line">    &#39;error&#39;: logging.ERROR,</span><br><span class="line">    &#39;critical&#39;: logging.CRITICAL</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 创建一个日志</span><br><span class="line">logger &#x3D; logging.getLogger()</span><br><span class="line">level &#x3D; &#39;default&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 创建日志文件方法</span><br><span class="line">def create_file(filename):</span><br><span class="line">    path &#x3D; filename[0:filename.rfind(&#39;&#x2F;&#39;)]</span><br><span class="line">    if not os.path.isdir(path):</span><br><span class="line">        os.makedirs(path)</span><br><span class="line">    if not os.path.isfile(filename):</span><br><span class="line">        fd &#x3D; open(filename, mode&#x3D;&#39;w&#39;, encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">        fd.close()</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 给logger添加handler 添加内容到日志句柄中</span><br><span class="line">def set_handler(levels):</span><br><span class="line">    if levels &#x3D;&#x3D; &#39;error&#39;:</span><br><span class="line">        logger.addHandler(MyLog.err_handler)</span><br><span class="line">    logger.addHandler(MyLog.handler)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 在记录日志之后移除句柄</span><br><span class="line">def remove_handler(levels):</span><br><span class="line">    if levels &#x3D;&#x3D; &#39;error&#39;:</span><br><span class="line">        logger.removeHandler(MyLog.err_handler)</span><br><span class="line">    logger.removeHandler(MyLog.handler)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_current_time():</span><br><span class="line">    return time.strftime(MyLog.date, time.localtime(time.time()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyLog:</span><br><span class="line">    path &#x3D; os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line">    log_file &#x3D; path + &#39;&#x2F;Log&#x2F;log.log&#39;</span><br><span class="line">    err_file &#x3D; path + &#39;&#x2F;Log&#x2F;err.log&#39;</span><br><span class="line">    logger.setLevel(LEVELS.get(level, logging.NOTSET))</span><br><span class="line">    create_file(log_file)</span><br><span class="line">    create_file(err_file)</span><br><span class="line">    date &#x3D; &#39;%Y-%m-%d %H:%M:%S&#39;</span><br><span class="line"></span><br><span class="line">    # 创建一个handler，用于写入日志文件</span><br><span class="line">    handler &#x3D; logging.FileHandler(log_file, encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">    err_handler &#x3D; logging.FileHandler(err_file, encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def debug(log_meg):</span><br><span class="line">        set_handler(&#39;debug&#39;)</span><br><span class="line">        # 文件中输出模式</span><br><span class="line">        logger.debug(log_meg)</span><br><span class="line">        remove_handler(&#39;debug&#39;)</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def info(log_meg):</span><br><span class="line">        set_handler(&#39;info&#39;)</span><br><span class="line">        logger.info(log_meg)</span><br><span class="line">        remove_handler(&#39;info&#39;)</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def warning(log_meg):</span><br><span class="line">        set_handler(&#39;warning&#39;)</span><br><span class="line">        logger.warning(log_meg)</span><br><span class="line">        remove_handler(&#39;warning&#39;)</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def error(log_meg):</span><br><span class="line">        set_handler(&#39;error&#39;)</span><br><span class="line">        logger.error(log_meg)</span><br><span class="line">        remove_handler(&#39;error&#39;)</span><br><span class="line"></span><br><span class="line">    @staticmethod</span><br><span class="line">    def critical(log_meg):</span><br><span class="line">        set_handler(&#39;critical&#39;)</span><br><span class="line">        logger.error(log_meg)</span><br><span class="line">        remove_handler(&#39;critical&#39;)</span><br><span class="line"></span><br><span class="line">    # 设置控制台输出格式</span><br><span class="line">    formatter &#x3D; logging.Formatter(&quot;%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s&quot;)</span><br><span class="line">    # 再创建一个handler，用于输出到控制台</span><br><span class="line">    console &#x3D; logging.StreamHandler()</span><br><span class="line">    console.setFormatter(formatter)</span><br><span class="line">    handler.setFormatter(formatter)</span><br><span class="line">    err_handler.setFormatter(formatter)</span><br><span class="line">    logger.addHandler(console)</span><br><span class="line">    console.setLevel(logging.INFO)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &quot;__main__&quot;:</span><br><span class="line">    MyLog.debug(&quot;This is debug message&quot;)</span><br><span class="line">    MyLog.info(&quot;This is info message&quot;)</span><br><span class="line">    MyLog.warning(&quot;This is warning message&quot;)</span><br><span class="line">    MyLog.error(&quot;This is error&quot;)</span><br><span class="line">    MyLog.critical(&quot;This is critical message&quot;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>unit.py</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">from commom.handel_json import get_jsondata</span><br><span class="line">from commom.log import MyLog</span><br><span class="line"></span><br><span class="line">def get_host(file_name):</span><br><span class="line">    if file_name.find(&quot;ubq&quot;) &gt;&#x3D; 0:</span><br><span class="line">        if file_name.find(&quot;_fe_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;ubq_fe_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        elif file_name.find(&quot;_be_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;ubq_be_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        else:</span><br><span class="line">            # 此处应打印log日志记录无法在文件名中找到对应标志，文件名拼写错误</span><br><span class="line">            MyLog.debug(&quot;无法在文件名中找到端标识&quot;)</span><br><span class="line">            return None</span><br><span class="line">    elif file_name.find(&quot;mlm&quot;) &gt;&#x3D; 0:</span><br><span class="line">        if file_name.find(&quot;_fe_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;mlm_fe_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        elif file_name.find(&quot;_be_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;mlm_be_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        else:</span><br><span class="line">            MyLog.debug(&quot;无法在文件名中找到端标识&quot;)</span><br><span class="line">            # 此处应打印log日志记录无法在文件名中找到对应标志，文件名拼写错误</span><br><span class="line">            return None</span><br><span class="line">    elif file_name.find(&quot;gzb&quot;) &gt;&#x3D; 0:</span><br><span class="line">        if file_name.find(&quot;_fe_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;gzb_fe_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        elif file_name.find(&quot;_be_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;gzb_be_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        elif file_name.find(&quot;_sh_&quot;) &gt;&#x3D; 0:</span><br><span class="line">            host &#x3D; get_jsondata(&quot;config.json&quot;)[&quot;test&quot;][&quot;gzb_sh_host&quot;]</span><br><span class="line">            return host</span><br><span class="line">        else:</span><br><span class="line">            MyLog.debug(&quot;无法在文件名中找到端标识&quot;)</span><br><span class="line">            # 此处应打印log日志记录无法在文件名中找到对应标志，文件名拼写错误</span><br><span class="line">            return None</span><br><span class="line">    else:</span><br><span class="line">        # 此处应打印log日志记录无法在文件名中找到对应标志</span><br><span class="line">        MyLog.info(&quot;无法在文件名中找到系统标识，文件名错误&quot;)</span><br><span class="line">        return None</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_init_data(key):</span><br><span class="line">    key &#x3D; key + &quot;_data&quot;</span><br><span class="line">    data &#x3D; get_jsondata(&quot;config.json&quot;)[key]</span><br><span class="line">    if data &#x3D;&#x3D; &#123;&#125;:</span><br><span class="line">        MyLog.info(f&quot;无法获取到&#123;key&#125;对应的初始化账号数据&quot;)</span><br><span class="line">        return None</span><br><span class="line">    return data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_data(name):</span><br><span class="line">    json_name &#x3D; name + &#39;.json&#39;</span><br><span class="line">    json_data &#x3D; get_jsondata(json_name)</span><br><span class="line">    mid_name &#x3D; name[5:11]</span><br><span class="line">    headers &#x3D; get_jsondata(&#39;headers.json&#39;)[mid_name][&quot;headers&quot;]</span><br><span class="line">    host &#x3D; get_host(json_name)</span><br><span class="line">    url &#x3D; host + json_data[&#39;url&#39;]</span><br><span class="line">    par &#x3D; json_data[&#39;testcase&#39;][0]</span><br><span class="line">    return url, headers, par</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>config</p>
+<ul>
+<li>config.json(数据相关已脱敏(◔‸◔）)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;test&quot;: &#123;</span><br><span class="line">    &quot;ubq_fe_host&quot;: &quot;https:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;ubq_be_host&quot;: &quot;https:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;ubq_sh_host&quot;: &quot;http:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;mlm_fe_host&quot;: &quot;http:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;mlm_be_host&quot;: &quot;http:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;gzb_be_host&quot;: &quot;https:&#x2F;&#x2F;xxx&quot;,</span><br><span class="line">    &quot;gzb_sh_host&quot;: &quot;https:&#x2F;&#x2F;xxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_fe_host_data&quot;:&#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_be_host_data&quot;: &#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_sh_host_data&quot;: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mlm_fe_host_data&quot;: &#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mlm_be_host_data&quot;: &#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxx&quot;,</span><br><span class="line">    &quot;password&quot;:&quot;xxxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;gzb_be_host_data&quot;: &#123;</span><br><span class="line">    &quot;user&quot;:&quot;xxxxx&quot;,</span><br><span class="line">    &quot;password&quot;:&quot;xxxxx&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;gzb_sh_host_data&quot;: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;login_path&quot;: &#123;</span><br><span class="line">    &quot;path&quot;: &quot;&#x2F;xxxxx&#x2F;xxxx&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>header.json </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;header&quot;: &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">    &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">    &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_fe&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">      &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">      &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_be&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">      &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">      &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;ubq_sh&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mlm_fe&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">      &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">      &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mlm_be&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">      &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">      &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;gzb_fe&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;gzb_be&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;85.0.4183.121 Safari&#x2F;537.36&quot;,</span><br><span class="line">      &quot;Accept&quot;: &quot;application&#x2F;json, text&#x2F;plain, *&#x2F;*&quot;,</span><br><span class="line">      &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;gzb_sh&quot;: &#123;</span><br><span class="line">    &quot;headers&quot;: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>data中的用例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;:&quot;项目名&quot;,</span><br><span class="line">  &quot;url&quot;:&quot;&#x2F;xxxx&#x2F;xxxxx&#x2F;xxxx&#x2F;xxxx&quot;,</span><br><span class="line">  &quot;method&quot;:&quot;GET&quot;,</span><br><span class="line">  &quot;testcase&quot;:[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;:&quot;用例名&quot;,</span><br><span class="line">      &quot;params&quot;:&#123;</span><br><span class="line">        &quot;demoid&quot;:&quot;xxxxxxxxxxxxxxxx&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;validate&quot;: &#123;</span><br><span class="line">        &quot;success&quot;:&quot;True&quot;,</span><br><span class="line">        &quot;data&quot;: &#123;</span><br><span class="line">          &quot;xxxxx&quot;: &quot;xxxxx&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>test:通过函数名来确定对应的用例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from commom.unit import get_data</span><br><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line">import allure</span><br><span class="line"></span><br><span class="line">class Test(object):</span><br><span class="line"></span><br><span class="line">    @allure.feature(&#39;验证漫联盟管理系统存证详情&#39;)</span><br><span class="line">    def test_mlm_be_evidenceDetail(self):</span><br><span class="line">        url, headers, par &#x3D; get_data(sys._getframe().f_code.co_name)</span><br><span class="line">        r &#x3D; requests.get(url&#x3D;url, headers&#x3D;headers, params&#x3D;par[&#39;params&#39;])</span><br><span class="line">        response &#x3D; r.json()</span><br><span class="line">        assert r.status_code &#x3D;&#x3D; 200</span><br><span class="line">        assert str(response[&quot;success&quot;]) &#x3D;&#x3D; par[&#39;validate&#39;][&#39;success&#39;]</span><br></pre></td></tr></table></figure>
+<p>conftst.py pytest的fixtue功能，可对接口验证进行前后置操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import pytest</span><br><span class="line">from commom.unit import get_data</span><br><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">@pytest.fixture(scope&#x3D;&quot;class&quot;)</span><br><span class="line">def del_car():</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    后置删除购物车添加</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    yield</span><br><span class="line">    url, headers, par &#x3D; get_data(&quot;test_mlm_fe_list&quot;)</span><br><span class="line">    r &#x3D; requests.get(url&#x3D;url, headers&#x3D;headers, params&#x3D;par[&#39;params&#39;])</span><br><span class="line">    response &#x3D; r.json()</span><br><span class="line">    ids &#x3D; response[&#39;data&#39;][0][&#39;shoppingCartProductVOS&#39;][0][&#39;id&#39;]</span><br><span class="line">    data &#x3D; &#123;&quot;ids&quot;:[int(ids)]&#125;</span><br><span class="line">    url, headers, par &#x3D; get_data(&quot;test_mlm_fe_delete&quot;)</span><br><span class="line">    res &#x3D; requests.post(url&#x3D;url, headers&#x3D;headers, data&#x3D;json.dumps(data))</span><br><span class="line">    return del_car</span><br></pre></td></tr></table></figure>
+<p>pytest.ini pytest的配置<br>控制台不显示乱码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">disable_test_id_escaping_and_forfeit_all_rights_to_community_support &#x3D; True</span><br></pre></td></tr></table></figure>
+
+
+<p>run.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">主程序入口</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">import pytest</span><br><span class="line">from commom.handel_cookie import handel_token, clear</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    1.清理配置信息</span><br><span class="line">    1.获取token，存储到cookie.json中供全局使用</span><br><span class="line">    </span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    clear()</span><br><span class="line">    handel_token()</span><br><span class="line">    pytest.main([&#39;-s&#39;, &#39;-q&#39;, &#39;--alluredir&#x3D;allure_results&#39;])</span><br></pre></td></tr></table></figure>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://example.com/2021/01/25/pytest/" data-id="ckkdbg4yl0001oojk4pqdfir9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "H·stone"
+        },
+        "headline": "python+pytest 构建接口自动化项目",
+        "image": "http://example.comhttps://s3.ax1x.com/2021/01/25/sO3Lw9.jpg",
+        "keywords": "自动化测试 pytest",
+        "genre": "工作",
+        "datePublished": "2021-01-25",
+        "dateCreated": "2021-01-25",
+        "dateModified": "2021-01-25",
+        "url": "http://example.com/2021/01/25/pytest/",
+        "description": "python+pytest 构建接口自动化项目技术要求：python基础
+存在的不足
+获取函数名方法不好
+token鉴权是否是这种方式？
+未完成一个好用的接口关联机制
+无法测试rpc接口
+
+项目构成：autoAPItest
+
+allure_results ：测试结果文件夹，通过allure生成，由大量json，txt格式文件组成
+commom ：公共方法文件，内部包含，对json的处理，对toke",
+        "wordCount": 3358
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/huangsh1" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2021/01/22/report/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">allure测试报告在项目中的使用实践</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/01/25/pytest/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/25/sO3Lw9.jpg)" alt="python+pytest 构建接口自动化项目" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
+                            <p class="item-title"><a href="/2021/01/25/pytest/" class="title">python+pytest 构建接口自动化项目</a></p>
+                            <p class="item-date"><time datetime="2021-01-25T13:03:55.000Z" itemprop="datePublished">2021-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/01/22/report/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/22/sI2ZC9.png)" alt="allure测试报告在项目中的使用实践" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
+                            <p class="item-title"><a href="/2021/01/22/report/" class="title">allure测试报告在项目中的使用实践</a></p>
+                            <p class="item-date"><time datetime="2021-01-22T10:11:56.000Z" itemprop="datePublished">2021-01-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2021/01/18/hee/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shpL7Q.jpg)" alt="盐" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
+                            <p class="item-title"><a href="/2021/01/18/hee/" class="title">盐</a></p>
+                            <p class="item-date"><time datetime="2021-01-18T11:11:30.000Z" itemprop="datePublished">2021-01-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/09/17/Monkeytest/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/25/sLy3Zt.jpg)" alt="尝试Monkey测试" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
+                            <p class="item-title"><a href="/2020/09/17/Monkeytest/" class="title">尝试Monkey测试</a></p>
+                            <p class="item-date"><time datetime="2020-09-17T01:56:26.000Z" itemprop="datePublished">2020-09-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/04/16/weaknet/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://s3.ax1x.com/2021/01/21/shFix1.jpg)" alt="弱网测试" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a></p>
+                            <p class="item-title"><a href="/2019/04/16/weaknet/" class="title">弱网测试</a></p>
+                            <p class="item-date"><time datetime="2019-04-16T10:11:56.000Z" itemprop="datePublished">2019-04-16</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monkey/" rel="tag">Monkey</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/allure/" rel="tag">allure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytest/" rel="tag">pytest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/selenium/" rel="tag">selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sha256/" rel="tag">sha256</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ui%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">ui自动化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BC%B1%E7%BD%91%E6%B5%8B%E8%AF%95/" rel="tag">弱网测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Monkey/" style="font-size: 10px;">Monkey</a> <a href="/tags/allure/" style="font-size: 10px;">allure</a> <a href="/tags/pytest/" style="font-size: 10px;">pytest</a> <a href="/tags/selenium/" style="font-size: 10px;">selenium</a> <a href="/tags/sha256/" style="font-size: 10px;">sha256</a> <a href="/tags/ui%E8%87%AA%E5%8A%A8%E5%8C%96/" style="font-size: 10px;">ui自动化</a> <a href="/tags/%E5%BC%B1%E7%BD%91%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">弱网测试</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">自动化测试</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2021 H·stone</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://example.com/2021/01/25/pytest/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
