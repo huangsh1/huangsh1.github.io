@@ -6,26 +6,27 @@
     
 
     
-    <title>尝试Monkey测试 | H·stone</title>
+    <title>总结工作中一般会用到的git操作 | H·stone</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="Monkey" />
+    <meta name="keywords" content="自动化测试,git" />
     
-    <meta name="description" content="因为业务的关系一直聚焦于功能测试，接口测试，还没有尝试过跑Monkey脚本，试了一试。 参考： https:&#x2F;&#x2F;ww.cnblogs.com&#x2F;lauren1003&#x2F;p&#x2F;6193277.html https:&#x2F;&#x2F;www.cnblogs.com&#x2F;tekoyo&#x2F;p&#x2F;5288661.html  实践：monkey测试 首要条件：安装JDK  安装SDK 连接模拟器 –连接模拟器  mumu模拟器 1adb">
+    <meta name="description" content="工作中git常用   释义 代码 备注    查看当前 git branch    查看远程 git branch -a    本地修改撤销 git checkout .    切换分支 git checkout 分支名    查看当前分支和远程分支的关联 git branch -vv    删除分支 git branch -D 分支名    切换并创建scm 关联到远程的scm git chec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="尝试Monkey测试">
-<meta property="og:url" content="http://example.com/2020/09/17/Monkeytest/index.html">
+<meta property="og:title" content="总结工作中一般会用到的git操作">
+<meta property="og:url" content="http://example.com/2018/10/15/git/index.html">
 <meta property="og:site_name" content="H·stone">
-<meta property="og:description" content="因为业务的关系一直聚焦于功能测试，接口测试，还没有尝试过跑Monkey脚本，试了一试。 参考： https:&#x2F;&#x2F;ww.cnblogs.com&#x2F;lauren1003&#x2F;p&#x2F;6193277.html https:&#x2F;&#x2F;www.cnblogs.com&#x2F;tekoyo&#x2F;p&#x2F;5288661.html  实践：monkey测试 首要条件：安装JDK  安装SDK 连接模拟器 –连接模拟器  mumu模拟器 1adb">
+<meta property="og:description" content="工作中git常用   释义 代码 备注    查看当前 git branch    查看远程 git branch -a    本地修改撤销 git checkout .    切换分支 git checkout 分支名    查看当前分支和远程分支的关联 git branch -vv    删除分支 git branch -D 分支名    切换并创建scm 关联到远程的scm git chec">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/25/sLy3Zt.jpg">
-<meta property="article:published_time" content="2020-09-17T01:56:26.000Z">
-<meta property="article:modified_time" content="2021-01-25T08:08:32.599Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/02/hDrXJx.png">
+<meta property="article:published_time" content="2018-10-15T15:24:15.000Z">
+<meta property="article:modified_time" content="2021-09-02T02:41:49.574Z">
 <meta property="article:author" content="H·stone">
-<meta property="article:tag" content="Monkey">
+<meta property="article:tag" content="自动化测试">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/25/sLy3Zt.jpg">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/09/02/hDrXJx.png">
     
 
     
@@ -155,14 +156,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-Monkeytest" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-git" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        尝试Monkey测试
+        总结工作中一般会用到的git操作
         </h1>
     
 
@@ -173,16 +174,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2020/09/17/Monkeytest/" class="article-date">
-       <time datetime="2020-09-17T01:56:26.000Z" itemprop="datePublished">2020-09-17</time>
+    <a href="/2018/10/15/git/" class="article-date">
+       <time datetime="2018-10-15T15:24:15.000Z" itemprop="datePublished">2018-10-15</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2020/09/17/Monkeytest/" class="article-date">
-     <time datetime="2021-01-25T08:08:32.599Z" itemprop="dateModified">2021-01-25</time>
+  <a href="/2018/10/15/git/" class="article-date">
+     <time datetime="2021-09-02T02:41:49.574Z" itemprop="dateModified">2021-09-02</time>
   </a>
 </div>
 
@@ -192,7 +193,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Monkey/" rel="tag">Monkey</a>
+        <a class="tag-link-link" href="/tags/git/" rel="tag">git</a>, <a class="tag-link-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a>
     </div>
 
                 
@@ -209,31 +210,121 @@
 
             
 
-            <p>因为业务的关系一直聚焦于功能测试，接口测试，还没有尝试过跑Monkey脚本，试了一试。</p>
-<h6 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h6><ul>
-<li><a target="_blank" rel="noopener" href="https://ww.cnblogs.com/lauren1003/p/6193277.html">https://ww.cnblogs.com/lauren1003/p/6193277.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tekoyo/p/5288661.html">https://www.cnblogs.com/tekoyo/p/5288661.html</a></li>
-</ul>
-<h6 id="实践："><a href="#实践：" class="headerlink" title="实践："></a>实践：</h6><p>monkey测试</p>
-<p>首要条件：安装JDK  安装SDK 连接模拟器</p>
-<p>–连接模拟器  mumu模拟器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect 127.0.0.1:7555</span><br></pre></td></tr></table></figure>
+            <h3 id="工作中git常用"><a href="#工作中git常用" class="headerlink" title="工作中git常用"></a>工作中git常用</h3><table>
+<thead>
+<tr>
+<th>释义</th>
+<th>代码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看当前</td>
+<td>git branch</td>
+<td></td>
+</tr>
+<tr>
+<td>查看远程</td>
+<td>git branch -a</td>
+<td></td>
+</tr>
+<tr>
+<td>本地修改撤销</td>
+<td>git checkout .</td>
+<td></td>
+</tr>
+<tr>
+<td>切换分支</td>
+<td>git checkout 分支名</td>
+<td></td>
+</tr>
+<tr>
+<td>查看当前分支和远程分支的关联</td>
+<td>git branch -vv</td>
+<td></td>
+</tr>
+<tr>
+<td>删除分支</td>
+<td>git branch -D 分支名</td>
+<td></td>
+</tr>
+<tr>
+<td>切换并创建scm 关联到远程的scm</td>
+<td>git checkout -b scm origin/scm</td>
+<td>scm是分支名</td>
+</tr>
+<tr>
+<td>他会监控工作区的状态树，使用它会把工作时的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件。</td>
+<td>git add .</td>
+<td></td>
+</tr>
+<tr>
+<td>暂存区提交版本库</td>
+<td>git commit -m “备注”</td>
+<td></td>
+</tr>
+<tr>
+<td>远端更新下拉</td>
+<td>git pull</td>
+<td>相当于是从远程获取最新版本并merge到本地</td>
+</tr>
+<tr>
+<td>本地推送远端</td>
+<td>git pushgit push origin scm</td>
+<td>如果已经关联上了，可以push但是 最好还是 指定远程分支 以免推送到master</td>
+</tr>
+<tr>
+<td>master合并到本地</td>
+<td>（本地）：git merge master</td>
+<td></td>
+</tr>
+<tr>
+<td>回退到某个版本</td>
+<td>git reset –hard f10a9</td>
+<td></td>
+</tr>
+<tr>
+<td>查看版本信息</td>
+<td>git log –pretty=oneline</td>
+<td></td>
+</tr>
+<tr>
+<td>查看历史</td>
+<td>git reflog</td>
+<td></td>
+</tr>
+<tr>
+<td>查看版本当前版本号</td>
+<td>git cherry origin/scm_new</td>
+<td></td>
+</tr>
+<tr>
+<td>查看一共有多少版本号</td>
+<td>git cherry origin scm_new</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">当你想更正别人仓库里的错误时，要走一个流程：</span><br><span class="line">先 fork 别人的仓库，相当于拷贝一份，相信我，不会有人直接让你改修原仓库的</span><br><span class="line">clone 到本地分支，做一些 bug fix</span><br><span class="line">发起 pull request 给原仓库，让他看到你修改的 bug</span><br><span class="line">原仓库 review 这个 bug，如果是正确的话，就会 merge 到他自己的项目中</span><br><span class="line">至此，整个 pull request 的过程就结束了。</span><br></pre></td></tr></table></figure>
+<h6 id="本地开发后合并到master上"><a href="#本地开发后合并到master上" class="headerlink" title="本地开发后合并到master上"></a>本地开发后合并到master上</h6><p>比如 本地dev开发完</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &#39;改动了哪里&#39;</span><br><span class="line">git push origin master  推送到远程，尽量指定远程分支</span><br></pre></td></tr></table></figure>
+<p>然后dev合并到 master，要先切换到master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master 切换master  当然这个是本地的master分支</span><br><span class="line">git pull origin master 从远端拉下最新的master代码，毕竟别人也可能修改了master</span><br></pre></td></tr></table></figure>
 
-<p>–查询应用程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell dumpsys activity|find &quot;mFocusedActivity&quot;</span><br></pre></td></tr></table></figure>
-
-<p>–点击1000下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -p com.thgy.uprotect 1000</span><br></pre></td></tr></table></figure>
-
-<p>–点击并生成日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -p com.thgy.uprotect -s 500 --ignore-crashes --ignore-timeouts --monitor-native-crashes -v -v -v 10000 &gt; D:\monkey.txt</span><br></pre></td></tr></table></figure>
+<p>然后在master分支 合并 dev代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev   合并dev代码</span><br></pre></td></tr></table></figure>
+<p>然后查看状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">Your branch is ahead of &#39;origin&#x2F;master&#39; by 12 commits.</span><br><span class="line">  (use &quot;git push&quot; to publish your local commits)</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>上面的意思就是你有12个commit，需要push到远程master上<br>执行下面命令即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<h6 id="应用储藏的场景"><a href="#应用储藏的场景" class="headerlink" title="应用储藏的场景"></a>应用储藏的场景</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git stash </span><br><span class="line">git pull</span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+<h6 id="应用分支重命名的场景"><a href="#应用分支重命名的场景" class="headerlink" title="应用分支重命名的场景"></a>应用分支重命名的场景</h6><h6 id="比如：想把本地和远程的某个分支-更改名字"><a href="#比如：想把本地和远程的某个分支-更改名字" class="headerlink" title="比如：想把本地和远程的某个分支 更改名字"></a>比如：想把本地和远程的某个分支 更改名字</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">重命名远程分支对应的本地分支</span><br><span class="line">git branch -m scm scm_old</span><br><span class="line"></span><br><span class="line">删除远程分支</span><br><span class="line">git push --delete origin scm</span><br><span class="line"></span><br><span class="line">上传新命名的本地</span><br><span class="line">git push origin scm_old</span><br><span class="line"></span><br><span class="line">把修改后的本地分支与远程分支关联</span><br><span class="line">git branch --set-upstream-to origin&#x2F;scm_ol</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://example.com/2020/09/17/Monkeytest/" data-id="ckt2brlwe00013ojk258e7x3i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://example.com/2018/10/15/git/" data-id="ckt2brlwl00053ojkblrn0c1a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -303,24 +394,56 @@
             "@type": "Person",
             "name": "H·stone"
         },
-        "headline": "尝试Monkey测试",
-        "image": "http://example.comhttps://s3.ax1x.com/2021/01/25/sLy3Zt.jpg",
-        "keywords": "Monkey",
+        "headline": "总结工作中一般会用到的git操作",
+        "image": "http://example.comhttps://z3.ax1x.com/2021/09/02/hDrXJx.png",
+        "keywords": "自动化测试 git",
         "genre": "工作",
-        "datePublished": "2020-09-17",
-        "dateCreated": "2020-09-17",
-        "dateModified": "2021-01-25",
-        "url": "http://example.com/2020/09/17/Monkeytest/",
-        "description": "因为业务的关系一直聚焦于功能测试，接口测试，还没有尝试过跑Monkey脚本，试了一试。
-参考：
-https://ww.cnblogs.com/lauren1003/p/6193277.html
-https://www.cnblogs.com/tekoyo/p/5288661.html
+        "datePublished": "2018-10-15",
+        "dateCreated": "2018-10-15",
+        "dateModified": "2021-09-02",
+        "url": "http://example.com/2018/10/15/git/",
+        "description": "工作中git常用
 
-实践：monkey测试
-首要条件：安装JDK  安装SDK 连接模拟器
-–连接模拟器  mumu模拟器
-1adb",
-        "wordCount": 66
+
+释义
+代码
+备注
+
+
+
+查看当前
+git branch
+
+
+
+查看远程
+git branch -a
+
+
+
+本地修改撤销
+git checkout .
+
+
+
+切换分支
+git checkout 分支名
+
+
+
+查看当前分支和远程分支的关联
+git branch -vv
+
+
+
+删除分支
+git branch -D 分支名
+
+
+
+切换并创建scm 关联到远程的scm
+git chec",
+        "wordCount": 256
     }
 </script>
 
@@ -369,20 +492,20 @@ https://www.cnblogs.com/tekoyo/p/5288661.html
         
 <nav id="article-nav">
     
-        <a href="/2021/01/18/hee/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/01/29/selenium/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            盐
+            selenium中曾经遇上问题的地方
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2019/04/16/weaknet/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/05/20/dns/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">弱网测试</p>
+        <p class="article-nav-title">DNS详细解析过程</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -599,7 +722,7 @@ https://www.cnblogs.com/tekoyo/p/5288661.html
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://example.com/2020/09/17/Monkeytest/';
+    var disqus_url = 'http://example.com/2018/10/15/git/';
     
     (function() {
     var dsq = document.createElement('script');
