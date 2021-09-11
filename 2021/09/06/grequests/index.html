@@ -6,26 +6,26 @@
     
 
     
-    <title>什么事情是你注重养生以后才知道的 | H·stone</title>
+    <title>grequsets源码解读 | H·stone</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="随记" />
+    <meta name="keywords" content="性能测试" />
     
-    <meta name="description" content="1234作者：匿名用户链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;451372641&#x2F;answer&#x2F;1843688807来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  也不是养生才知道的。就是得病知道的。 第一点不要熬夜，如果熬夜请尽量早点睡，不要觉得自己年轻牛逼，身体可以随便造。">
+    <meta name="description" content="Grequests源码解读很简单的封装，主要还是request 和 gevent。协程以后应该好好看看 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么事情是你注重养生以后才知道的">
-<meta property="og:url" content="http://huangshi.im/2021/05/07/yangsheng/index.html">
+<meta property="og:title" content="grequsets源码解读">
+<meta property="og:url" content="http://huangshi.im/2021/09/06/grequests/index.html">
 <meta property="og:site_name" content="H·stone">
-<meta property="og:description" content="1234作者：匿名用户链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;451372641&#x2F;answer&#x2F;1843688807来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  也不是养生才知道的。就是得病知道的。 第一点不要熬夜，如果熬夜请尽量早点睡，不要觉得自己年轻牛逼，身体可以随便造。">
+<meta property="og:description" content="Grequests源码解读很简单的封装，主要还是request 和 gevent。协程以后应该好好看看 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://z3.ax1x.com/2021/05/28/2Fs9qU.png">
-<meta property="article:published_time" content="2021-05-07T03:20:30.000Z">
-<meta property="article:modified_time" content="2021-05-28T08:06:32.383Z">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/11/hxZyXd.png">
+<meta property="article:published_time" content="2021-09-06T10:29:15.000Z">
+<meta property="article:modified_time" content="2021-09-11T01:37:48.679Z">
 <meta property="article:author" content="H·stone">
-<meta property="article:tag" content="随记">
+<meta property="article:tag" content="性能测试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/28/2Fs9qU.png">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/09/11/hxZyXd.png">
     
 
     
@@ -150,19 +150,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/%E9%9A%8F%E8%AE%B0/">随记</a>
+    <a class="page-title-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-yangsheng" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-grequests" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        什么事情是你注重养生以后才知道的
+        grequsets源码解读
         </h1>
     
 
@@ -173,16 +173,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2021/05/07/yangsheng/" class="article-date">
-       <time datetime="2021-05-07T03:20:30.000Z" itemprop="datePublished">2021-05-07</time>
+    <a href="/2021/09/06/grequests/" class="article-date">
+       <time datetime="2021-09-06T10:29:15.000Z" itemprop="datePublished">2021-09-06</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2021/05/07/yangsheng/" class="article-date">
-     <time datetime="2021-05-28T08:06:32.383Z" itemprop="dateModified">2021-05-28</time>
+  <a href="/2021/09/06/grequests/" class="article-date">
+     <time datetime="2021-09-11T01:37:48.679Z" itemprop="dateModified">2021-09-11</time>
   </a>
 </div>
 
@@ -192,7 +192,7 @@
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/%E9%9A%8F%E8%AE%B0/" rel="tag">随记</a>
+        <a class="tag-link-link" href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" rel="tag">性能测试</a>
     </div>
 
                 
@@ -209,33 +209,13 @@
 
             
 
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">作者：匿名用户</span><br><span class="line">链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;451372641&#x2F;answer&#x2F;1843688807</span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+            <h4 id="Grequests源码解读"><a href="#Grequests源码解读" class="headerlink" title="Grequests源码解读"></a>Grequests源码解读</h4><p>很简单的封装，主要还是request 和 gevent。<br>协程以后应该好好看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line">#grequests</span><br><span class="line">#~~~~~~~~~</span><br><span class="line">#这个模块包含一个&#39;requests.api&#39;异步副本，通过gevent启动，所有API方法都返回一个&#96;&#96;Request&#96;&#96;实例（与&#96;&#96;Response&#96;&#96;相对），请求列表可以通过&#96;&#96;map（）发送&#96;&#96;.</span><br><span class="line"></span><br><span class="line">from functools import partial</span><br><span class="line">import traceback</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    import gevent</span><br><span class="line">    from gevent import monkey as curious_george</span><br><span class="line">    from gevent.pool import Pool</span><br><span class="line">except ImportError:</span><br><span class="line">    raise RuntimeError(&#39;Gevent is required for grequests.&#39;)</span><br><span class="line"></span><br><span class="line"># Monkey-patch.</span><br><span class="line">curious_george.patch_all(thread&#x3D;False, select&#x3D;False)</span><br><span class="line"></span><br><span class="line">from requests import Session</span><br><span class="line"></span><br><span class="line">__all__ &#x3D; (</span><br><span class="line">    &#39;map&#39;, &#39;imap&#39;,</span><br><span class="line">    &#39;get&#39;, &#39;options&#39;, &#39;head&#39;, &#39;post&#39;, &#39;put&#39;, &#39;patch&#39;, &#39;delete&#39;, &#39;request&#39;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class AsyncRequest(object):</span><br><span class="line">    &quot;&quot;&quot; 异步请求.</span><br><span class="line">    接受与&#96;&#96;Session.request&#96;&#96;相同的参数，还有一些附加的参数:</span><br><span class="line">    :param session: 发送请求的session</span><br><span class="line">    :param callback: 响应时调用回调，类似传递 &#96;&#96;hooks&#x3D;&#123;&#39;response&#39;: callback&#125;&#96;&#96;</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    def __init__(self, method, url, **kwargs):</span><br><span class="line">        #: Request method</span><br><span class="line">        self.method &#x3D; method</span><br><span class="line">        #: URL to request</span><br><span class="line">        self.url &#x3D; url</span><br><span class="line">        #: Associated &#96;&#96;Session&#96;&#96;</span><br><span class="line">        self.session &#x3D; kwargs.pop(&#39;session&#39;, None)</span><br><span class="line">        if self.session is None:</span><br><span class="line">            self.session &#x3D; Session()</span><br><span class="line">            self._close &#x3D; True</span><br><span class="line">        else:</span><br><span class="line">            self._close &#x3D; False  # 如果用户提供了会话，则不要在每次请求后关闭适配器</span><br><span class="line"></span><br><span class="line">        callback &#x3D; kwargs.pop(&#39;callback&#39;, None)</span><br><span class="line">        if callback:</span><br><span class="line">            kwargs[&#39;hooks&#39;] &#x3D; &#123;&#39;response&#39;: callback&#125;</span><br><span class="line"></span><br><span class="line">        #: The rest arguments for &#96;&#96;Session.request&#96;&#96;</span><br><span class="line">        self.kwargs &#x3D; kwargs</span><br><span class="line">        #: Resulting &#96;&#96;Response&#96;&#96;</span><br><span class="line">        self.response &#x3D; None</span><br><span class="line"></span><br><span class="line">    def send(self, **kwargs):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        根据传递给构造函数的参数和可选的“kwargs”准备请求。</span><br><span class="line">        然后发送请求并将响应保存到：attr:&#96;response&#96;</span><br><span class="line">        :returns: &#96;&#96;Response&#96;&#96;</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        merged_kwargs &#x3D; &#123;&#125;</span><br><span class="line">        merged_kwargs.update(self.kwargs)</span><br><span class="line">        merged_kwargs.update(kwargs)</span><br><span class="line">        try:</span><br><span class="line">            self.response &#x3D; self.session.request(self.method,</span><br><span class="line">                                                self.url, **merged_kwargs)</span><br><span class="line">        except Exception as e:</span><br><span class="line">            self.exception &#x3D; e</span><br><span class="line">            self.traceback &#x3D; traceback.format_exc()</span><br><span class="line">        finally:</span><br><span class="line">            if self._close:</span><br><span class="line">                # 如果我们提供了会话对象，请确保我们正在清理</span><br><span class="line">                # 因为如果它不被重复使用，在这个时候保持它的开放是没有意义的</span><br><span class="line">                self.session.close()</span><br><span class="line">        return self</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def send(r, pool&#x3D;None, stream&#x3D;False):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    如果没有pool指定此方法，使用指定的pool发送请求对象。pool是非常好用的，因为你可以指定pool的大小，所以可以限制并发.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if pool is not None:</span><br><span class="line">        return pool.spawn(r.send, stream&#x3D;stream)</span><br><span class="line"></span><br><span class="line">    return gevent.spawn(r.send, stream&#x3D;stream)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 使用适当的HTTP方法创建AsyncRequest的快捷方式</span><br><span class="line">get &#x3D; partial(AsyncRequest, &#39;GET&#39;)</span><br><span class="line">options &#x3D; partial(AsyncRequest, &#39;OPTIONS&#39;)</span><br><span class="line">head &#x3D; partial(AsyncRequest, &#39;HEAD&#39;)</span><br><span class="line">post &#x3D; partial(AsyncRequest, &#39;POST&#39;)</span><br><span class="line">put &#x3D; partial(AsyncRequest, &#39;PUT&#39;)</span><br><span class="line">patch &#x3D; partial(AsyncRequest, &#39;PATCH&#39;)</span><br><span class="line">delete &#x3D; partial(AsyncRequest, &#39;DELETE&#39;)</span><br><span class="line"></span><br><span class="line"># 同义词</span><br><span class="line">def request(method, url, **kwargs):</span><br><span class="line">    return AsyncRequest(method, url, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def map(requests, stream&#x3D;False, size&#x3D;None, exception_handler&#x3D;None, gtimeout&#x3D;None):</span><br><span class="line">    &quot;&quot;&quot;同时将请求列表转换为响应.</span><br><span class="line">    :param requests: 请求对象的集合.</span><br><span class="line">    :param stream: 如果为True，则不会立即下载内容.</span><br><span class="line">    :param size: 指定一次要发出的请求数. 如果没有，则不会发生限流.</span><br><span class="line">    :param exception_handler: Callback function, 发生异常时调用，参数：请求，异常</span><br><span class="line">    :param gtimeout: Gevent joinall timeout in seconds. (Note: 与请求超时无关)</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    requests &#x3D; list(requests)</span><br><span class="line"></span><br><span class="line">    pool &#x3D; Pool(size) if size else None</span><br><span class="line">    jobs &#x3D; [send(r, pool, stream&#x3D;stream) for r in requests]</span><br><span class="line">    gevent.joinall(jobs, timeout&#x3D;gtimeout)</span><br><span class="line"></span><br><span class="line">    ret &#x3D; []</span><br><span class="line"></span><br><span class="line">    for request in requests:</span><br><span class="line">        if request.response is not None:</span><br><span class="line">            ret.append(request.response)</span><br><span class="line">        elif exception_handler and hasattr(request, &#39;exception&#39;):</span><br><span class="line">            ret.append(exception_handler(request, request.exception))</span><br><span class="line">        elif exception_handler and not hasattr(request, &#39;exception&#39;):</span><br><span class="line">            ret.append(exception_handler(request, None))</span><br><span class="line">        else:</span><br><span class="line">            ret.append(None)</span><br><span class="line"></span><br><span class="line">    return ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def imap(requests, stream&#x3D;False, size&#x3D;2, exception_handler&#x3D;None):</span><br><span class="line">    &quot;&quot;&quot;同时将请求生成器对象转换为响应生成器.</span><br><span class="line">    :param requests: 请求对象的生成器.</span><br><span class="line">    :param stream: 如果为True，则不会立即下载内容.</span><br><span class="line">    :param size: 指定一次要发出的请求数。默认值为2</span><br><span class="line">    :param exception_handler: Callback function, 发生异常时调用，参数：请求，异常</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    pool &#x3D; Pool(size)</span><br><span class="line"></span><br><span class="line">    def send(r):</span><br><span class="line">        return r.send(stream&#x3D;stream)</span><br><span class="line"></span><br><span class="line">    for request in pool.imap_unordered(send, requests):</span><br><span class="line">        if request.response is not None:</span><br><span class="line">            yield request.response</span><br><span class="line">        elif exception_handler:</span><br><span class="line">            ex_result &#x3D; exception_handler(request, request.exception)</span><br><span class="line">            if ex_result is not None:</span><br><span class="line">                yield ex_result</span><br><span class="line"></span><br><span class="line">    pool.join()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h6 id="也不是养生才知道的。就是得病知道的。"><a href="#也不是养生才知道的。就是得病知道的。" class="headerlink" title="也不是养生才知道的。就是得病知道的。"></a>也不是养生才知道的。就是得病知道的。</h6><ol>
-<li>第一点不要熬夜，如果熬夜请尽量早点睡，不要觉得自己年轻牛逼，身体可以随便造。如果你能规律睡眠，植物神经紊乱会离你很远。一个人睡眠不会出问题，因为不熬夜。如果熬夜基本分四个阶段。第一阶段，你并不会因为熬夜觉得身体体力跟不上睡不好。第二阶段你熬夜觉得晚上睡的早了睡不着，早上起不来。第三阶段晚上睡一会就醒，白天睡得很香。第四阶段植物神经紊乱。无论白天晚上都睡不着。</li>
-<li>第二点，不要生气，尤其生很大的气，不要因为别人的错误来惩罚自己，这句话说的很简单，但是做到很难。生气会和我一样肝风内动，导致高血压。</li>
-<li>第三点，不要纵欲。不要纵欲，不要纵欲。1不干净，2纵欲过度导致肾虚，3多干点别的排解欲望。别等到肾虚了，头发掉了秃头了在后悔。肾虚的人往往欲望大，因为肾气一恢复你就有欲望。但是如果过了恢复阶段，往往欲望小了，身体也好了。越虚越想这是个恶性循环。</li>
-<li>第四点，不要贪凉，贪凉容易导致你身体经常怕冷。</li>
-<li>第五点，不要一直吃重油重盐的食物，偶尔吃一吃可以，一直吃容易动脉粥样硬化，血压高。老了很麻烦。多吃水果和蔬菜。尽量少吃含有反式脂肪的东西这些东西很不健康。</li>
-<li>第六点，规律锻炼，不要赖床，赖床导致身体没有精神，不规律锻炼容易让你血压波动太明显，要么高压高，要么低压低，锻炼不是说让你慢跑，你可以选择任何让你觉得累的方式，只要你喜欢。高压高的感觉是脑袋晕但是胀的晕。低压低的感觉是身体莫名奇妙的累，喘不上气，有或者没有头晕。低压高的感觉也是胀的头晕。但是没有高压高，胀的那么明显。高血压患者不建议做俯卧撑，在医生指导下进行。</li>
-<li>第七点，不要长时间盯着屏幕，偶尔45分钟放松一两分钟，你的眼睛会舒服的多。</li>
-<li>第八点，养身体需要吃点中药，如果只是自然恢复很慢，像我起码得一两年。吃什么找好的中医把脉。</li>
-<li>第九点，情绪尽量平稳。不要太过于生气怨恨贪心。对身体不好。</li>
-<li>第十点，要睡好觉，睡不好觉真的不行，可以吃点中药调理，实在没办法也可以吃西药。</li>
-<li>第一十点，不要为难自己，不要总是觉得难过，不要想的太多，不要总是沉浸在过去，要放眼未来，生活中快乐的事很多。</li>
-<li>第十二点，远离那些会让你生病的人。有些人你和他在一起就会生病，你也不知道为什么，但是就是这样的。</li>
-<li>第十三点，让自己快乐，忘记那些不愉快的事情，让自己活的快乐。</li>
-<li>第十四点，如果脚冷可以每晚热水泡脚。这对改善睡眠真的有用。</li>
-<li>第十五点，有些病西医可能没用，但是中医有奇效。有些病可能中医不行，但是西医很给力。你要选择适合自己的。</li>
-<li>第十六点，衣服没必要脱得那么快，毕竟你的长腿很漂亮，但是我希望你的身体更健康。</li>
-<li>第十七点，衣服要穿的早，哪一天会突然变冷，你不知道。</li>
-<li>第十八点，你的身体对某种食物很抗拒，那么一定不要吃，否则会难受好几天。</li>
-<li>第十九点，按时吃饭。</li>
-<li>第二十点，多喝水，尿酸高的食物尽量少吃，尤其是海鲜。多喝水可以降低你的尿酸值。建议每天2升水。</li>
-<li>第二十一点，要维持身体bmi指数尽量正常，体重除以身高的平方。公斤除以米的平方。尽量在18到25之间。</li>
-<li>第二十二点，减肥不要太快心太着急，如果减的太快血管失去脂肪组织支撑。血压容易不稳定。</li>
-<li>第二十三点，愿大家都能够身体健康。</li>
-</ol>
+
+
+
+
 
         </div>
         <footer class="article-footer">
@@ -243,7 +223,7 @@
 
 
 
-    <a data-url="http://huangshi.im/2021/05/07/yangsheng/" data-id="cktf4dlv50014dgjkav0b58y7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://huangshi.im/2021/09/06/grequests/" data-id="cktf4dluo0006dgjkass17svj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -313,19 +293,17 @@
             "@type": "Person",
             "name": "H·stone"
         },
-        "headline": "什么事情是你注重养生以后才知道的",
-        "image": "http://huangshi.imhttps://z3.ax1x.com/2021/05/28/2Fs9qU.png",
-        "keywords": "随记",
-        "genre": "随记",
-        "datePublished": "2021-05-07",
-        "dateCreated": "2021-05-07",
-        "dateModified": "2021-05-28",
-        "url": "http://huangshi.im/2021/05/07/yangsheng/",
-        "description": "1234作者：匿名用户链接：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;451372641&#x2F;answer&#x2F;1843688807来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-也不是养生才知道的。就是得病知道的。
-第一点不要熬夜，如果熬夜请尽量早点睡，不要觉得自己年轻牛逼，身体可以随便造。",
-        "wordCount": 17
+        "headline": "grequsets源码解读",
+        "image": "http://huangshi.imhttps://z3.ax1x.com/2021/09/11/hxZyXd.png",
+        "keywords": "性能测试",
+        "genre": "工作",
+        "datePublished": "2021-09-06",
+        "dateCreated": "2021-09-06",
+        "dateModified": "2021-09-11",
+        "url": "http://huangshi.im/2021/09/06/grequests/",
+        "description": "Grequests源码解读很简单的封装，主要还是request 和 gevent。协程以后应该好好看看
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787",
+        "wordCount": 1300
     }
 </script>
 
@@ -374,20 +352,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2021/06/21/tools/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            QA的军火库
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2021/04/13/excel/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2021/09/06/test_fuzai/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">python操作excel 文档</p>
+        <p class="article-nav-title">grequsets做负载测试总结</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -604,7 +572,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://huangshi.im/2021/05/07/yangsheng/';
+    var disqus_url = 'http://huangshi.im/2021/09/06/grequests/';
     
     (function() {
     var dsq = document.createElement('script');
